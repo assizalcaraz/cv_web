@@ -1,38 +1,55 @@
-# 🌐 CV Web – José Assiz
+# Portfolio Web – José Assiz
 
-Este repositorio contiene mi portfolio profesional, alojado en [GitHub Pages](https://assizalcaraz.github.io/cv_web). Está diseñado como una landing page oscura y moderna, construida con **HTML** y **Tailwind CSS**, que combina mi trayectoria como **técnico en sonido** y mi experiencia en **IT, DevOps y desarrollo backend**.
-
-## 🛠 Tecnologías utilizadas
-
-- HTML5 + Tailwind CSS
-- Deploy en GitHub Pages
-- Estructura 100% estática y optimizada para visualización rápida
-
-## 📁 Estructura
-
-```bash
-├── index.html       # Página principal
-├── assets/          # Imágenes y estilos (opcional)
-├── README.md        # Este archivo
-```
-
-## 🧠 Sobre mí
-
-Soy un profesional con experiencia interdisciplinaria: dirección de sonido, postproducción audiovisual, desarrollo de software, backend en Django y automatización de sistemas. Mi perfil combina lo creativo con lo técnico, aplicando soluciones concretas tanto en entornos culturales como en infraestructura digital.
-
-## 🚀 Proyectos destacados
-
-- **leadsHunter**: App Django + Google Places API para prospección comercial.
-- **Mentor.IA**: Plataforma de cursos personalizados con RAG + LLM.
-- **Gestor de carpetas (Google Drive)**: Flask + SQLite para automatizar el manejo de carpetas de estudiantes.
-
-## 📬 Contacto
-
-- 📧 assizalcaraz@gmail.com
-- 🌐 [assizalcaraz.github.io/cv_web](https://assizalcaraz.github.io/cv_web)
-- 🎧 [invisible.estudio en Instagram](https://www.instagram.com/invisible.estudio/)
-- 🎬 [IMDb perfil profesional](https://www.imdb.com/es/name/nm7687037/)
+Este sitio resume mi trabajo técnico y creativo, combinando backend, automatización y herramientas audiovisuales. Está construido en HTML con Tailwind CSS y desplegado en GitHub Pages.
 
 ---
 
-> Desarrollado y mantenido por José Assiz | 2025
+## 👤 Sobre mí
+
+Soy un profesional formado en la ENERC (Escuela Nacional de Realización Cinematográfica - INCAA), con experiencia en postproducción sonora y un giro progresivo hacia roles técnicos vinculados a automatización, infraestructura ligera y programación backend.
+
+---
+
+## 🚀 Proyectos Destacados
+
+### 🗺️ [leadsHunter](https://github.com/assizalcaraz/leadsHunter)
+
+Aplicación Django que automatiza la prospección de clientes con Google Places API.
+
+- Búsqueda filtrada de negocios locales
+- Exportación de resultados a PDF
+- Ideal para equipos comerciales
+
+### 📚 Mentor.IA
+
+Plataforma que genera cursos personalizados y guía de hábitos mediante LLMs y RAG.
+
+- Generación progresiva de teoría
+- Bitácora de avances
+- Planificación autónoma de objetivos
+
+### 📁 [Bot para Google Drive](https://github.com/assizalcaraz/bot-google-drive)
+
+Asistente Flask para la gestión masiva de carpetas de estudiantes en Drive.
+
+- Crea y comparte carpetas privadas desde planillas
+- Distribuye archivos por lote o individualmente
+- Optimiza flujos docentes en cursos grandes
+
+---
+
+## 🔜 Coming Soon: Asistencia con Reconocimiento Facial
+
+Sistema híbrido para registro presencial distribuido:
+
+- Reconocimiento facial con cifrado biométrico
+- Validación en red local + túnel Cloudflare
+- Compatible con aulas sin conectividad permanente
+- Preparado para integración con Google Sheets y dashboards
+
+---
+
+## 📬 Contacto
+
+- ✉️ assizalcaraz@gmail.com
+- 🔗 [GitHub](https://github.com/assizalcaraz) | [LinkedIn](https://www.linkedin.com/in/assizalcaraz/) | [Instagram](https://instagram.com/invisible.estudio) | [IMDb](https://www.imdb.com/name/nm7687037/)

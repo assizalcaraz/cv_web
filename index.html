@@ -2,6 +2,31 @@
 <html lang="es">
 <head>
   <style>
+    .visor-imagen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    .visor-imagen img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 0.5rem;
+      border: 2px solid white;
+    }
+    .visor-imagen button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: white;
+      font-size: 2rem;
+      background: transparent;
+    }
+  </style>
+  <style>
     .proyecto {
       transition: all 0.3s ease;
     }
@@ -61,15 +86,18 @@
   <h2 class="text-3xl font-bold text-center mb-10">Proyectos Destacados</h2>
   <div class="flex flex-col gap-8 max-w-5xl mx-auto">
     <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
-      <h3 class="text-xl font-semibold">leadsHunter</h3>
+      <h3 class="text-xl font-semibold">leadsHunter <a href="https://github.com/assizalcaraz/leadsHunter" class="text-blue-400 text-sm hover:underline ml-2">Ver repositorio</a></h3>
       <p class="mt-2">Aplicación Django que automatiza la búsqueda de potenciales clientes con la API de Google Places. Permite generar informes personalizados para equipos de ventas, incluyendo exportación a PDF.</p>
       <div class="mt-4">
         <div id="leads-carousel" class="flex gap-4 overflow-hidden">
+          <img src="img/formulario-busquedada.png" alt="Formulario búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+          <img src="img/resultados-busqueda.png" alt="Resultados búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+          <img src="img/reporte-pdf.png" alt="Reporte PDF generado" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
           <img src="img/formulario-busquedada.png" alt="Formulario búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
           <img src="img/resultados-busqueda.png" alt="Resultados búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
           <img src="img/reporte-pdf.png" alt="Reporte PDF generado" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
         </div>
-        <a href="https://github.com/assizalcaraz/leadsHunter" class="block text-blue-400 hover:underline mt-4">Ver repositorio en GitHub</a>
+        
       </div>
     </div>
     <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden flex flex-col justify-between">
@@ -83,9 +111,15 @@
       </div>
     </div>
     <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
-      <h3 class="text-xl font-semibold">Asistente para Google Drive</h3>
-      <p class="mt-2">App Flask conectada a SQLite y Google Drive API. Crea carpetas para estudiantes a partir de una hoja de cálculo y automatiza la organización y compartición de materiales.</p>
-    </div>
+  <h3 class="text-xl font-semibold">Asistente para Google Drive <a href="https://github.com/assizalcaraz/bot-google-drive" class="text-blue-400 text-sm hover:underline ml-2">Ver repositorio</a></h3>
+<p class="mt-2">Aplicación Flask diseñada para facilitar la gestión de materiales educativos en Google Drive, ideal para docentes con grupos numerosos. A partir de un listado en Google Sheets, el sistema genera automáticamente carpetas privadas para cada estudiante, gestiona permisos de acceso y permite distribuir archivos o carpetas individuales o masivos. El asistente permite también eliminar o modificar elementos por lote o de forma selectiva, optimizando significativamente el flujo de trabajo docente.</p>
+  <div class="mt-4 flex gap-4 overflow-x-auto" id="drive-carousel">
+    <img src="img/configuracion.png" alt="Configuración inicial del proyecto" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+    <img src="img/compartir carpeta o acceso directo.png" alt="Compartir con estudiantes" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+    <img src="img/lotes.png" alt="Lotes generados" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+    <img src="img/Captura de pantalla 2025-04-09 a la(s) 6.41.54 p. m..png" alt="Carpetas y archivos en Drive" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+  </div>
+</div>
   </div>
 </section>
 
@@ -115,6 +149,19 @@
     const scrollAmount = 300;
     container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
   }
+</script>
+<div id="visorImagen" class="hidden visor-imagen">
+  <img id="imagenAmpliada" src="">
+  <button onclick="cerrarVisor()">✕</button>
+</div>
+<script>
+function mostrarImagenGrande(src) {
+  document.getElementById('imagenAmpliada').src = src;
+  document.getElementById('visorImagen').classList.remove('hidden');
+}
+function cerrarVisor() {
+  document.getElementById('visorImagen').classList.add('hidden');
+}
 </script>
 </body>
 </html>
