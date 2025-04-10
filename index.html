@@ -25,38 +25,42 @@
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: visible;
+      overflow: hidden;
       pointer-events: none;
       z-index: 0;
     }
     .onda {
       position: absolute;
-      border: 2px solid white;
+      border: 1px solid white;
       border-radius: 9999px;
       opacity: 0.3;
-      animation: rebote var(--dur) infinite ease-in-out;
+      animation: zigzag var(--dur) ease-in-out;
       transform: translate(-50%, -50%) scale(1);
     }
-    @keyframes rebote {
+    @keyframes zigzag {
       0% {
         width: 0;
         height: 0;
         opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
       }
-      25% {
-        opacity: 0.4;
-        transform: translate(-50%, -52%) scale(1.05);
+      20% {
+        transform: translate(-48%, -52%) scale(1.1) rotate(5deg);
       }
-      50% {
-        opacity: 0.3;
-        transform: translate(-50%, -48%) scale(1.1);
+      40% {
+        transform: translate(-52%, -48%) scale(0.9) rotate(-5deg);
+      }
+      60% {
+        transform: translate(-47%, -53%) scale(1.15) rotate(7deg);
+      }
+      80% {
+        transform: translate(-53%, -47%) scale(0.95) rotate(-7deg);
       }
       100% {
         width: var(--size);
         height: var(--size);
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
       }
     }
   </style>
@@ -74,11 +78,11 @@
       }, 20);
 
       const container = document.querySelector('.ondas-container');
-      for (let i = 1; i < 30; i++) {
+      for (let i = 0; i < 25; i++) {
         const onda = document.createElement('div');
         onda.classList.add('onda');
         const size = Math.floor(Math.random() * 1000) + 400 + 'px';
-        const duration = (Math.random() * 4 + 3).toFixed(2) + 's';
+        const duration = (Math.random() * 8 + 3).toFixed(2) + 's';
         const offsetX = (Math.random() * 100).toFixed(2) + '%';
         const offsetY = (Math.random() * 100).toFixed(2) + '%';
         onda.style.setProperty('--size', size);
@@ -87,6 +91,10 @@
         onda.style.top = offsetY;
         onda.style.borderColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
         container.appendChild(onda);
+
+        if (Math.random() > 0.5) {
+          onda.style.animationDirection = 'reverse';
+        }
       }
     });
   </script>
@@ -95,10 +103,13 @@
 <body class="bg-[#0a0c10] text-white font-sans">
   <!-- Header -->
   <header class="relative overflow-hidden text-center py-24 bg-[#0a0c10]">
-    <div style="opacity: 40%;" class="ondas-container"></div>
+    <div class="ondas-container"></div>
     <h1 class="text-5xl font-extrabold tracking-tight text-white">Assiz Alcaraz Baxter</h1>
     <p class="text-xl mt-4 opacity-80">DevOps, SRE & Sonido</p>
-    <a href="#contacto" class="mt-8 inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
+    <div class="absolute bottom-6 right-6 flex space-x-4">
+      <a href="#contacto" class="inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
+      <a href="cv/CV_Jose_Assiz_IT_2025.pdf" download class="inline-block bg-gray-800 text-white py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-gray-700 shadow-md">Descargar CV</a>
+    </div>
   </header>
 
   <!-- Sobre mí -->
@@ -108,6 +119,7 @@
       Profesional formado en la ENERC (Escuela Nacional de Realización y Experimentación Cinematográfica - INCAA), con experiencia en dirección de sonido, mezcla 5.1 y supervisión de Foley para cine, series y plataformas como Disney+ y Netflix. A partir de 2020 me volqué con dedicación al desarrollo backend y automatización, integrando herramientas como Django, PostgreSQL, Docker, Google APIs y sistemas de virtualización como Proxmox. Mi enfoque combina sensibilidad artística y precisión técnica, orientado a la mejora de procesos y eficiencia operativa.
     </p>
   </section>
+
 
   <!-- Proyectos -->
   <section class="bg-gray-800 py-16 px-6">
