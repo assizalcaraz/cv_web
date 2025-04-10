@@ -65,14 +65,50 @@
     }
     @media (max-width: 768px) {
       .carousel img {
-        width: 300px !important;
+        width: 90vw !important;
         height: auto;
+      }
+      .header-buttons a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
       }
     }
     .carousel img {
-      width: 500px;
+      width: 1600px;
       height: auto;
       margin-right: 1rem;
+      cursor: pointer;
+    }
+    .fullscreen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+    .fullscreen-overlay img {
+      max-width: 95vw;
+      max-height: 95vh;
+    }
+    .fullscreen-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 95vw;
+      margin-top: 1rem;
+      color: white;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+    .fullscreen-nav span {
+      cursor: pointer;
+      padding: 0 1rem;
     }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -80,8 +116,9 @@
     document.addEventListener("DOMContentLoaded", function () {
       const carousel = document.getElementById('leads-carousel');
       let direction = 1;
+      let paused = false;
       setInterval(() => {
-        if (!carousel) return;
+        if (!carousel || paused) return;
         if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth || carousel.scrollLeft <= 0) {
           direction *= -1;
         }
@@ -89,7 +126,8 @@
       }, 20);
 
       const container = document.querySelector('.ondas-container');
-      for (let i = 0; i < 25; i++) {
+      const maxOndas = window.innerWidth < 768 ? 10 : 25;
+      for (let i = 0; i < maxOndas; i++) {
         const onda = document.createElement('div');
         onda.classList.add('onda');
         const size = Math.floor(Math.random() * 1000) + 400 + 'px';
@@ -102,10 +140,63 @@
         onda.style.top = offsetY;
         onda.style.borderColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
         container.appendChild(onda);
-
         if (Math.random() > 0.5) {
           onda.style.animationDirection = 'reverse';
         }
+      }
+
+      const images = document.querySelectorAll('.carousel img');
+      let currentIndex = 0;
+
+      images.forEach((img, i) => {
+        img.addEventListener('click', () => {
+          paused = true;
+          currentIndex = i;
+          showImage();
+        });
+      });
+
+      function showImage() {
+        const overlay = document.createElement('div');
+        overlay.className = 'fullscreen-overlay';
+
+        const fullImg = document.createElement('img');
+        fullImg.src = images[currentIndex].src;
+        overlay.appendChild(fullImg);
+
+        const nav = document.createElement('div');
+        nav.className = 'fullscreen-nav';
+        nav.innerHTML = `
+          <span id="prev">⟵</span>
+          <span id="next">⟶</span>
+        `;
+        overlay.appendChild(nav);
+
+        document.body.appendChild(overlay);
+
+        function cleanup() {
+          paused = false;
+          overlay.remove();
+        }
+
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) cleanup();
+        });
+
+        document.getElementById('prev').onclick = (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          fullImg.src = images[currentIndex].src;
+        };
+        document.getElementById('next').onclick = (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % images.length;
+          fullImg.src = images[currentIndex].src;
+        };
+
+        document.addEventListener('keydown', function handleKey(e) {
+          if (e.key === 'Escape') cleanup();
+        }, { once: true });
       }
     });
   </script>
@@ -118,7 +209,7 @@
     <div class="ondas-container"></div>
     <h1 class="text-5xl font-extrabold tracking-tight text-white">Assiz Alcaraz Baxter</h1>
     <p class="text-xl mt-4 opacity-80">DevOps, SRE & Sonido</p>
-    <div class="absolute bottom-6 right-6 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+    <div class="absolute bottom-6 right-6 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 header-buttons">
       <a href="#contacto" class="inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
       <a href="cv.pdf" download class="inline-block bg-gray-800 text-white py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-gray-700 shadow-md">Descargar CV</a>
     </div>
@@ -131,6 +222,7 @@
       Profesional formado en la ENERC (Escuela Nacional de Realización y Experimentación Cinematográfica - INCAA), con experiencia en dirección de sonido, mezcla 5.1 y supervisión de Foley para cine, series y plataformas como Disney+ y Netflix. A partir de 2020 me volqué con dedicación al desarrollo backend y automatización, integrando herramientas como Django, PostgreSQL, Docker, Google APIs y sistemas de virtualización como Proxmox. Mi enfoque combina sensibilidad artística y precisión técnica, orientado a la mejora de procesos y eficiencia operativa.
     </p>
   </section>
+
 
 
 
