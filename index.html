@@ -3,7 +3,7 @@
 <head>
   <style>
     .tarjeta-proyecto {
-      @apply bg-gray-700 p-6 rounded-xl shadow-lg h-[75vh] overflow-hidden;
+      @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 rounded-xl shadow-2xl h-[85vh] overflow-hidden;
     }
     .proyecto {
       transition: all 0.3s ease;
@@ -63,6 +63,17 @@
         transform: translate(-50%, -50%) scale(1) rotate(0deg);
       }
     }
+    @media (max-width: 768px) {
+      .carousel img {
+        width: 300px !important;
+        height: auto;
+      }
+    }
+    .carousel img {
+      width: 500px;
+      height: auto;
+      margin-right: 1rem;
+    }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -98,6 +109,7 @@
       }
     });
   </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.ico">
 </head>
 <body class="bg-[#0a0c10] text-white font-sans">
@@ -106,9 +118,9 @@
     <div class="ondas-container"></div>
     <h1 class="text-5xl font-extrabold tracking-tight text-white">Assiz Alcaraz Baxter</h1>
     <p class="text-xl mt-4 opacity-80">DevOps, SRE & Sonido</p>
-    <div class="absolute bottom-6 right-6 flex space-x-4">
+    <div class="absolute bottom-6 right-6 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
       <a href="#contacto" class="inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
-      <a href="cv/CV_Jose_Assiz_IT_2025.pdf" download class="inline-block bg-gray-800 text-white py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-gray-700 shadow-md">Descargar CV</a>
+      <a href="cv.pdf" download class="inline-block bg-gray-800 text-white py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-gray-700 shadow-md">Descargar CV</a>
     </div>
   </header>
 
@@ -119,6 +131,7 @@
       Profesional formado en la ENERC (Escuela Nacional de Realización y Experimentación Cinematográfica - INCAA), con experiencia en dirección de sonido, mezcla 5.1 y supervisión de Foley para cine, series y plataformas como Disney+ y Netflix. A partir de 2020 me volqué con dedicación al desarrollo backend y automatización, integrando herramientas como Django, PostgreSQL, Docker, Google APIs y sistemas de virtualización como Proxmox. Mi enfoque combina sensibilidad artística y precisión técnica, orientado a la mejora de procesos y eficiencia operativa.
     </p>
   </section>
+
 
 
   <!-- Proyectos -->
