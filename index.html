@@ -2,31 +2,9 @@
 <html lang="es">
 <head>
   <style>
-    .visor-imagen {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
+    .tarjeta-proyecto {
+      @apply bg-gray-700 p-6 rounded-xl shadow-lg h-[75vh] overflow-hidden;
     }
-    .visor-imagen img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 0.5rem;
-      border: 2px solid white;
-    }
-    .visor-imagen button {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      color: white;
-      font-size: 2rem;
-      background: transparent;
-    }
-  </style>
-  <style>
     .proyecto {
       transition: all 0.3s ease;
     }
@@ -34,43 +12,93 @@
       transform: scale(1.04);
       z-index: 10;
     }
+    .imagen-expandible {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .imagen-expandible:hover {
+      transform: scale(1.1);
+    }
+    .ondas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .onda {
+      position: absolute;
+      border: 2px solid white;
+      border-radius: 9999px;
+      opacity: 0.3;
+      animation: rebote var(--dur) infinite ease-in-out;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    @keyframes rebote {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      25% {
+        opacity: 0.4;
+        transform: translate(-50%, -52%) scale(1.05);
+      }
+      50% {
+        opacity: 0.3;
+        transform: translate(-50%, -48%) scale(1.1);
+      }
+      100% {
+        width: var(--size);
+        height: var(--size);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
-<script>
-  // Auto-scroll infinito bidireccional para carrusel interno
-  document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.getElementById('leads-carousel');
-    let direction = 1;
-    setInterval(() => {
-      if (!carousel) return;
-      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth || carousel.scrollLeft <= 0) {
-        direction *= -1;
-      }
-      carousel.scrollBy({ left: 2 * direction, behavior: 'smooth' });
-    }, 20);
-  });
-</script>
   <script>
-    // Auto-scroll inmediato para carrusel interno
-    window.onload = function () {
+    document.addEventListener("DOMContentLoaded", function () {
       const carousel = document.getElementById('leads-carousel');
-      let scrollPos = 0;
+      let direction = 1;
       setInterval(() => {
         if (!carousel) return;
-        scrollPos += 300;
-        if (scrollPos >= carousel.scrollWidth - carousel.clientWidth) scrollPos = 0;
-        carousel.scrollTo({ left: scrollPos, behavior: 'smooth' });
-      }, 0);
-    }
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth || carousel.scrollLeft <= 0) {
+          direction *= -1;
+        }
+        carousel.scrollBy({ left: 2 * direction, behavior: 'smooth' });
+      }, 20);
+
+      const container = document.querySelector('.ondas-container');
+      for (let i = 1; i < 30; i++) {
+        const onda = document.createElement('div');
+        onda.classList.add('onda');
+        const size = Math.floor(Math.random() * 1000) + 400 + 'px';
+        const duration = (Math.random() * 4 + 3).toFixed(2) + 's';
+        const offsetX = (Math.random() * 100).toFixed(2) + '%';
+        const offsetY = (Math.random() * 100).toFixed(2) + '%';
+        onda.style.setProperty('--size', size);
+        onda.style.setProperty('--dur', duration);
+        onda.style.left = offsetX;
+        onda.style.top = offsetY;
+        onda.style.borderColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        container.appendChild(onda);
+      }
+    });
   </script>
   <link rel="icon" href="favicon.ico">
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-[#0a0c10] text-white font-sans">
   <!-- Header -->
-  <header class="text-center py-20 bg-gradient-to-b from-blue-900 to-gray-900">
-    <h1 class="text-5xl font-extrabold tracking-tight">José Assiz</h1>
+  <header class="relative overflow-hidden text-center py-24 bg-[#0a0c10]">
+    <div style="opacity: 40%;" class="ondas-container"></div>
+    <h1 class="text-5xl font-extrabold tracking-tight text-white">Assiz Alcaraz Baxter</h1>
     <p class="text-xl mt-4 opacity-80">DevOps, SRE & Sonido</p>
-    <a href="#contacto" class="mt-8 inline-block bg-blue-600 py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-blue-700">Contacto</a>
+    <a href="#contacto" class="mt-8 inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
   </header>
 
   <!-- Sobre mí -->
