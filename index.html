@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>José Assiz | DevOps, SRE & Sonido</title>
+  <style>
+    .proyecto {
+      transition: all 0.3s ease;
+    }
+    .proyecto:hover {
+      transform: scale(1.04);
+      z-index: 10;
+    }
+  </style>
   <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Auto-scroll infinito bidireccional para carrusel interno
+  document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.getElementById('leads-carousel');
+    let direction = 1;
+    setInterval(() => {
+      if (!carousel) return;
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth || carousel.scrollLeft <= 0) {
+        direction *= -1;
+      }
+      carousel.scrollBy({ left: 2 * direction, behavior: 'smooth' });
+    }, 20);
+  });
+</script>
+  <script>
+    // Auto-scroll inmediato para carrusel interno
+    window.onload = function () {
+      const carousel = document.getElementById('leads-carousel');
+      let scrollPos = 0;
+      setInterval(() => {
+        if (!carousel) return;
+        scrollPos += 300;
+        if (scrollPos >= carousel.scrollWidth - carousel.clientWidth) scrollPos = 0;
+        carousel.scrollTo({ left: scrollPos, behavior: 'smooth' });
+      }, 0);
+    }
+  </script>
   <link rel="icon" href="favicon.ico">
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -25,28 +58,36 @@
 
   <!-- Proyectos -->
   <section class="bg-gray-800 py-16 px-6">
-    <h2 class="text-3xl font-bold text-center mb-10">Proyectos Destacados</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold">leadsHunter</h3>
-        <p class="mt-2">Aplicación Django que automatiza la búsqueda de potenciales clientes con la API de Google Places. Permite generar informes personalizados para equipos de ventas, incluyendo exportación a PDF.</p>
-        <div class="mt-4 space-y-2">
-          <img src="img/formulario-busquedada.png" alt="Formulario búsqueda" class="rounded-lg border border-gray-600">
-          <img src="img/resultados-busqueda.png" alt="Resultados búsqueda" class="rounded-lg border border-gray-600">
-          <img src="img/reporte-pdf.png" alt="Reporte PDF generado" class="rounded-lg border border-gray-600">
-          <a href="https://github.com/assizalcaraz/leadsHunter" class="block text-blue-400 hover:underline mt-2">Ver repositorio en GitHub</a>
+  <h2 class="text-3xl font-bold text-center mb-10">Proyectos Destacados</h2>
+  <div class="flex flex-col gap-8 max-w-5xl mx-auto">
+    <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
+      <h3 class="text-xl font-semibold">leadsHunter</h3>
+      <p class="mt-2">Aplicación Django que automatiza la búsqueda de potenciales clientes con la API de Google Places. Permite generar informes personalizados para equipos de ventas, incluyendo exportación a PDF.</p>
+      <div class="mt-4">
+        <div id="leads-carousel" class="flex gap-4 overflow-hidden">
+          <img src="img/formulario-busquedada.png" alt="Formulario búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
+          <img src="img/resultados-busqueda.png" alt="Resultados búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
+          <img src="img/reporte-pdf.png" alt="Reporte PDF generado" class="rounded-lg border border-gray-600 w-64 flex-shrink-0">
         </div>
-      </div>
-      <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold">Mentor.IA</h3>
-        <p class="mt-2">Plataforma que genera cursos y objetivos personalizados. Integra modelos LLM, RAG y una bitácora interactiva. Pensada para formación autónoma y seguimiento de hábitos.</p>
-      </div>
-      <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold">Asistente para Google Drive</h3>
-        <p class="mt-2">App Flask conectada a SQLite y Google Drive API. Crea carpetas para estudiantes a partir de una hoja de cálculo y automatiza la organización y compartición de materiales.</p>
+        <a href="https://github.com/assizalcaraz/leadsHunter" class="block text-blue-400 hover:underline mt-4">Ver repositorio en GitHub</a>
       </div>
     </div>
-  </section>
+    <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden flex flex-col justify-between">
+      <h3 class="text-xl font-semibold">Mentor.IA</h3>
+      <p class="mt-2">Plataforma experimental que genera cursos y objetivos personalizados mediante integración de modelos LLM, RAG, bitácora de avances y generación progresiva de teoría. Pensada para formación autónoma, planificación de hábitos y workflows educativos flexibles.</p>
+      <div class="mt-4">
+        <video class="rounded-lg border border-gray-600 w-full max-h-[50vh] object-contain" controls>
+          <source src="videos/mentor-ia-demo.mp4" type="video/mp4">
+          Tu navegador no admite video HTML5.
+        </video>
+      </div>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
+      <h3 class="text-xl font-semibold">Asistente para Google Drive</h3>
+      <p class="mt-2">App Flask conectada a SQLite y Google Drive API. Crea carpetas para estudiantes a partir de una hoja de cálculo y automatiza la organización y compartición de materiales.</p>
+    </div>
+  </div>
+</section>
 
   <!-- CV Descargable -->
   <section class="py-16 px-6 text-center">
@@ -68,5 +109,12 @@
       <a href="https://www.linkedin.com/in/assizalcaraz/" class="mx-2 text-sm text-gray-400 hover:text-white">LinkedIn</a>
     </div>
   </footer>
+<script>
+  function scrollCarousel(direction) {
+    const container = document.querySelector('.snap-x');
+    const scrollAmount = 300;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
