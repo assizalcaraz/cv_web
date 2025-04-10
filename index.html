@@ -68,9 +68,14 @@
         width: 90vw !important;
         height: auto;
       }
+      .header-buttons {
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 0.5rem;
+      }
       .header-buttons a {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
       }
     }
     .carousel img {
@@ -209,9 +214,9 @@
     <div class="ondas-container"></div>
     <h1 class="text-5xl font-extrabold tracking-tight text-white">Assiz Alcaraz Baxter</h1>
     <p class="text-xl mt-4 opacity-80">DevOps, SRE & Sonido</p>
-    <div class="absolute bottom-6 right-6 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 header-buttons">
-      <a href="#contacto" class="inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
-      <a href="cv.pdf" download class="inline-block bg-gray-800 text-white py-2 px-6 rounded-full text-lg font-semibold transition hover:bg-gray-700 shadow-md">Descargar CV</a>
+    <div class="absolute bottom-6 right-6 flex flex-col sm:flex-row sm:justify-center sm:gap-2 header-buttons">
+      <a href="#contacto" class="inline-block bg-[#00eaff] text-[#0a0c10] py-2 px-4 rounded-full text-sm font-semibold transition hover:bg-[#05bcd4] shadow-md">Contacto</a>
+      <a href="cv.pdf" download class="inline-block bg-gray-800 text-white py-2 px-4 rounded-full text-sm font-semibold transition hover:bg-gray-700 shadow-md">CV⤵️</a>
     </div>
   </header>
 
