@@ -3,7 +3,7 @@
 <head>
   <style>
     .tarjeta-proyecto {
-      @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 rounded-xl shadow-2xl h-[85vh] overflow-hidden;
+      @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 rounded-xl shadow-2xl overflow-hidden;
     }
     .proyecto {
       transition: all 0.3s ease;
@@ -38,30 +38,12 @@
       transform: translate(-50%, -50%) scale(1);
     }
     @keyframes zigzag {
-      0% {
-        width: 0;
-        height: 0;
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-      }
-      20% {
-        transform: translate(-48%, -52%) scale(1.1) rotate(5deg);
-      }
-      40% {
-        transform: translate(-52%, -48%) scale(0.9) rotate(-5deg);
-      }
-      60% {
-        transform: translate(-47%, -53%) scale(1.15) rotate(7deg);
-      }
-      80% {
-        transform: translate(-53%, -47%) scale(0.95) rotate(-7deg);
-      }
-      100% {
-        width: var(--size);
-        height: var(--size);
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-      }
+      0% { width: 0; height: 0; opacity: 0.5; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+      20% { transform: translate(-48%, -52%) scale(1.1) rotate(5deg); }
+      40% { transform: translate(-52%, -48%) scale(0.9) rotate(-5deg); }
+      60% { transform: translate(-47%, -53%) scale(1.15) rotate(7deg); }
+      80% { transform: translate(-53%, -47%) scale(0.95) rotate(-7deg); }
+      100% { width: var(--size); height: var(--size); opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
     }
     @media (max-width: 768px) {
       .carousel img {
@@ -116,6 +98,7 @@
       padding: 0 1rem;
     }
   </style>
+</head>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -235,6 +218,21 @@
   <!-- Proyectos -->
   <section class="bg-gray-800 py-16 px-6">
   <h2 class="text-3xl font-bold text-center mb-10">Proyectos Destacados</h2>
+
+
+
+  <div class="flex flex-col gap-8 max-w-5xl mx-auto">
+    <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
+      <h3 class="text-xl font-semibold">Asintecia en el aula / QR + biometría y geolocalización <a href="https://github.com/assizalcaraz/asistencia_aula_validacion_biometrica" class="text-blue-400 text-sm hover:underline ml-2">Ver repositorio</a></h3>
+      <p class="mt-2">Sistema completo de validación de asistencia con reconocimiento facial, token dinámico y validación geográfica desde navegador móvil, sin apps. Pensado para universidades, protege contra fraude y asegura trazabilidad.</p>
+      <div class="mt-4">
+        <div id="leads-carousel" class="flex gap-4 overflow-hidden">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/wLGTQIBBsWE?si=M7r29XlIAIeT4YK6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  
+
   <div class="flex flex-col gap-8 max-w-5xl mx-auto">
     <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden">
       <h3 class="text-xl font-semibold">leadsHunter <a href="https://github.com/assizalcaraz/leadsHunter" class="text-blue-400 text-sm hover:underline ml-2">Ver repositorio</a></h3>
@@ -248,9 +246,10 @@
           <img src="img/resultados-busqueda.png" alt="Resultados búsqueda" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
           <img src="img/reporte-pdf.png" alt="Reporte PDF generado" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
         </div>
-        
       </div>
     </div>
+    
+    
     <div class="bg-gray-700 p-6 rounded-xl shadow-lg proyecto h-[75vh] overflow-hidden flex flex-col justify-between">
       <h3 class="text-xl font-semibold">Mentor.IA</h3>
       <p class="mt-2">Plataforma experimental que genera cursos y objetivos personalizados mediante integración de modelos LLM, RAG, bitácora de avances y generación progresiva de teoría. Pensada para formación autónoma, planificación de hábitos y workflows educativos flexibles.</p>
