@@ -3,8 +3,9 @@
 <head>
   <style>
     .tarjeta-proyecto {
-      @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 rounded-xl shadow-2xl overflow-hidden;
+      @apply max-w-3xl mx-auto bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 p-6 rounded-xl shadow-2xl hover:shadow-xl transition-all duration-300;
     }
+
     .proyecto {
       transition: all 0.3s ease;
     }
@@ -12,6 +13,7 @@
       transform: scale(1.04);
       z-index: 10;
     }
+
     .imagen-expandible {
       transition: transform 0.3s ease;
       cursor: pointer;
@@ -19,6 +21,15 @@
     .imagen-expandible:hover {
       transform: scale(1.1);
     }
+
+    .iframe-container {
+      @apply w-full mt-4;
+      aspect-ratio: 16 / 9;
+    }
+    .iframe-container iframe {
+      @apply w-full h-full rounded-lg;
+    }
+
     .ondas-container {
       position: absolute;
       top: 0;
@@ -29,6 +40,7 @@
       pointer-events: none;
       z-index: 0;
     }
+
     .onda {
       position: absolute;
       border: 1px solid white;
@@ -37,6 +49,7 @@
       animation: zigzag var(--dur) ease-in-out;
       transform: translate(-50%, -50%) scale(1);
     }
+
     @keyframes zigzag {
       0% { width: 0; height: 0; opacity: 0.5; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
       20% { transform: translate(-48%, -52%) scale(1.1) rotate(5deg); }
@@ -45,6 +58,7 @@
       80% { transform: translate(-53%, -47%) scale(0.95) rotate(-7deg); }
       100% { width: var(--size); height: var(--size); opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
     }
+
     @media (max-width: 768px) {
       .carousel img {
         width: 90vw !important;
@@ -60,12 +74,14 @@
         font-size: 0.8rem;
       }
     }
+
     .carousel img {
       width: 1600px;
       height: auto;
       margin-right: 1rem;
       cursor: pointer;
     }
+
     .fullscreen-overlay {
       position: fixed;
       top: 0;
@@ -79,10 +95,12 @@
       z-index: 1000;
       flex-direction: column;
     }
+
     .fullscreen-overlay img {
       max-width: 95vw;
       max-height: 95vh;
     }
+
     .fullscreen-nav {
       display: flex;
       justify-content: space-between;
@@ -93,11 +111,12 @@
       font-size: 1.5rem;
       user-select: none;
     }
+
     .fullscreen-nav span {
       cursor: pointer;
       padding: 0 1rem;
     }
-  </style>
+    </style>
 </head>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -265,9 +284,9 @@
 <p class="mt-2">Aplicación Flask diseñada para facilitar la gestión de materiales educativos en Google Drive, ideal para docentes con grupos numerosos. A partir de un listado en Google Sheets, el sistema genera automáticamente carpetas privadas para cada estudiante, gestiona permisos de acceso y permite distribuir archivos o carpetas individuales o masivos. El asistente permite también eliminar o modificar elementos por lote o de forma selectiva, optimizando significativamente el flujo de trabajo docente.</p>
   <div class="mt-4 flex gap-4 overflow-x-auto" id="drive-carousel">
     <img src="img/configuracion.png" alt="Configuración inicial del proyecto" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
-    <img src="img/compartir carpeta o acceso directo.png" alt="Compartir con estudiantes" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+    <img src="img/compartir.png" alt="Compartir con estudiantes" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
     <img src="img/lotes.png" alt="Lotes generados" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
-    <img src="img/Captura de pantalla 2025-04-09 a la(s) 6.41.54 p. m..png" alt="Carpetas y archivos en Drive" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
+    <img src="img/drive.png" alt="Carpetas y archivos en Drive" class="rounded-lg border border-gray-600 w-64 flex-shrink-0 cursor-pointer" onclick="mostrarImagenGrande(this.src)">
   </div>
 </div>
   </div>
